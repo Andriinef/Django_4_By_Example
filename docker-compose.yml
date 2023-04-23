@@ -1,0 +1,33 @@
+version: "3"
+
+services:
+  postgres:
+    image: "postgres:14"
+    container_name: "postgresql_db"
+    restart: always
+    env_file: ".env"
+    ports:
+      - "5433:5432"
+    volumes:
+      - "pg_data:/var/lib/postgresql/data"
+
+  # app:
+  #   stdin_open: true
+  #   tty: true
+  #   build:
+  #     context: .
+  #     dockerfile: "Dockerfile"
+  #   command: "python src/manage.py runserver 0.0.0.0:8000"
+  #   image: "_app"
+  #   container_name: "_app"
+  #   env_file:
+  #   - ".env"
+  #   depends_on:
+  #     - "postgres"
+  #   volumes:
+  #     - ".:/app/"
+  #   ports:
+  #     - "8000:8000"
+
+volumes:
+  pg_data: {}
