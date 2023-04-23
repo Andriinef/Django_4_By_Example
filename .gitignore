@@ -37,3 +37,6 @@ infra/configmaps.yaml
 
 # Staticfiles
 staticfiles/
+
+# Mypy
+.mypy_cache/
