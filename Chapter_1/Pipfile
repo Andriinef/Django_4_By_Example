@@ -8,10 +8,11 @@ name = "pypi"
 
 
 [dev-packages]
-black = "*"
-flake8 = "*"
-isort = "*"
-mypy = "*"
+black = "==23.3.0"
+flake8 = "==6.0.0"
+isort = "==5.12.0"
+mypy = "==1.2.0"
+autopep8 = "==2.0.2"
 
 [requires]
 python_version = "3.10"
