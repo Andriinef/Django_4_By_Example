@@ -10,6 +10,8 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
+from distutils.util import strtobool
+from os import getenv
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -20,12 +22,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-h=67-2gt)&#hk6ar$7=5n(ule_2kpq-6&n7po!4ykdr$9#iiy$"
+SECRET_KEY = getenv("DJANGO_SECRET_KEY", default="INVALID")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = strtobool(getenv("DJANGO_DEBUG", default="True"))
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = getenv("DJANGO_ALLOWED_HOSTS").split(", ")  # type: ignore
 
 
 # Application definition
@@ -37,6 +39,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "blog.apps.BlogConfig",
 ]
 
 MIDDLEWARE = [

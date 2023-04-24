@@ -1,0 +1,62 @@
+[tool.black]
+target-version = ['py310']
+line-length = 120
+exclude = '''
+(
+  /(
+      \.eggs         # исключить несколько общих каталогов в
+    | \.git
+    | \.hg
+    | \.mypy_cache
+    | \.tox
+    | \.venv
+    | _build
+    | buck-out
+    | build
+    | dist
+  )/
+)
+'''
+
+
+[tool.isort]
+profile = "black"
+multi_line_output = 3
+include_trailing_comma = true
+force_grid_wrap = 0
+use_parentheses = true
+line_length = 120
+skip = '.venv,venv,env,migrations'
+src_paths = ["src"]
+
+
+[tool.flake8]
+max-line-length = 120
+exclude = '.git, __pycache__, migrations, .venv, venv, env'
+
+
+[tool.mypy]
+python_version = '3.10'         # версия Python, используемая в вашем проекте
+plugins = []                    # использовать только стандартные проверки типов
+mypy_path = ['src']             # опциональный путь к папке со стабами типов
+exclude = [
+    'migrations/',
+    'mysite/settings'
+]                               # исключить из анализа типов определенные файлы или директории
+# strict_optional = true        # использовать ли опциональные типы
+# disallow_untyped_calls = true # запретить вызовы без указания типов
+# disallow_untyped_defs = true  # запретить объявления без указания типов
+# check_untyped_defs = true     # проверять ли объявления без указания типов
+ignore_missing_imports = true   # игнорировать ли ошибки отсутствия импортов
+follow_imports = 'silent'
+warn_redundant_casts = true     # генерировать предупреждение при избыточном приведении типов
+warn_unused_ignores = true      # генерирует предупреждения при использовании директивы # type: ignore в коде
+show_error_codes = true         # включает коды ошибок в сообщения об ошибках при анализе типов
+namespace_packages = true       # интерпретировать пакеты Python как пространства имен (namespace packages) при проверке типов
+
+[[tool.mypy.overrides]]         # игнорировать отсутствие импорта для модулей
+module = ["rest_framework_simplejwt.*", "allauth.*", "celery.*"]
+ignore_missing_imports = true
+
+[tool.django-stubs]             # указывает, какой модуль должен использоваться для настроек Django
+django_settings_module = "mysite.settings"
