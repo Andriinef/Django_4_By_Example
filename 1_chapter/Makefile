@@ -16,6 +16,8 @@ hel:
 	python src/manage.py help
 test:
 	python src/manage.py test
+orm:
+	python src/manage.py shell
 shell:
 	pipenv shell
 lock:
