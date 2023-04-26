@@ -41,7 +41,8 @@ plugins = []                    # использовать только стан
 mypy_path = ['src']             # опциональный путь к папке со стабами типов
 exclude = [
     'migrations/',
-    'mysite/settings'
+    'mysite/settings',
+    '1_chapter/'
 ]                               # исключить из анализа типов определенные файлы или директории
 # strict_optional = true        # использовать ли опциональные типы
 # disallow_untyped_calls = true # запретить вызовы без указания типов
