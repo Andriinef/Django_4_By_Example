@@ -5,7 +5,7 @@
 {% block content %}
     <h1>{{ post.title }}</h1>
     <p class="date">
-        Published {{ post.publish }} by {{ post.author }}
+        Опубликовано {{ post.publish }} к {{ post.author }}
     </p>
     {{ post.body|linebreaks }}
     <p>
@@ -13,4 +13,21 @@
             Поделиться этой записью
         </a>
     </p>
+    {% with comments.count as total_comments %}
+        <h2>
+            {{ total_comments }} comment{{ total_comments|pluralize }}
+        </h2>
+    {% endwith %}
+    {% for comment in comments %}
+        <div class="comment">
+            <p class="info">
+                Комментарий {{ forloop.counter }} от {{ comment.name }}
+                {{ comment.created }}
+            </p>
+            {{ comment.body|linebreaks }}
+        </div>
+    {% empty %}
+        <p>Нет комментариев.</p>
+    {% endfor %}
+    {% include "blog/post/includes/comment_form.html" %}
 {% endblock %}
