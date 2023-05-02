@@ -30,6 +30,9 @@ DEBUG = strtobool(getenv("DJANGO_DEBUG", default="True"))
 ALLOWED_HOSTS = getenv("DJANGO_ALLOWED_HOSTS").split(", ")  # type: ignore
 
 
+SITE_ID = 1
+
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -41,6 +44,8 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "blog.apps.BlogConfig",
     "taggit",
+    "django.contrib.sites",
+    "django.contrib.sitemaps",
 ]
 
 MIDDLEWARE = [
