@@ -143,3 +143,8 @@ EMAIL_HOST_USER = getenv("DJANGO_EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = getenv("DJANGO_EMAIL_HOST_PASSWORD")
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
+
+# Встроенные в Django представления аутентификации
+LOGIN_REDIRECT_URL = "dashboard"
+LOGIN_URL = "login"
+LOGOUT_URL = "logout"
