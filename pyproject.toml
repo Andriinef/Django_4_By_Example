@@ -45,6 +45,7 @@ exclude = [
     '1_chapter/',
     '2_chapter/',
     '3_chapter/',
+    '4_chapter/',
 ]                               # исключить из анализа типов определенные файлы или директории
 # strict_optional = true        # использовать ли опциональные типы
 # disallow_untyped_calls = true # запретить вызовы без указания типов
