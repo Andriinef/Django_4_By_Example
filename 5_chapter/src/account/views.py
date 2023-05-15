@@ -17,11 +17,11 @@ def user_login(request):
             if user is not None:
                 if user.is_active:
                     login(request, user)
-                    return HttpResponse("Authenticated successfully (Аутентификация прошла успешно)")
+                    return HttpResponse("Authenticated successfully")
                 else:
-                    return HttpResponse("Disabled account (Отключенная учетная запись)")
+                    return HttpResponse("Disabled account")
             else:
-                return HttpResponse("Invalid login (Недопустимый логин)")
+                return HttpResponse("Invalid login")
     else:
         form = LoginForm()
     return render(request, "account/login.html", {"form": form})
@@ -36,14 +36,13 @@ def register(request):
     if request.method == "POST":
         user_form = UserRegistrationForm(request.POST)
         if user_form.is_valid():
-            # Создать новый объект пользователя,
-            # но пока не сохранять его
+            # Create a new user object but avoid saving it yet
             new_user = user_form.save(commit=False)
-            # Установить выбранный пароль
+            # Set the chosen password
             new_user.set_password(user_form.cleaned_data["password"])
-            # Сохранить объект User
+            # Save the User object
             new_user.save()
-            # Создать профиль пользователя
+            # Create the user profile
             Profile.objects.create(user=new_user)
             return render(request, "account/register_done.html", {"new_user": new_user})
     else:

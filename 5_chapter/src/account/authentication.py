@@ -1,9 +1,10 @@
+from account.models import Profile
 from django.contrib.auth.models import User
 
 
 class EmailAuthBackend:
     """
-    Аутентифицировать посредством адреса электронной почты.
+    Authenticate using an e-mail address.
     """
 
     def authenticate(self, request, username=None, password=None):
@@ -20,3 +21,10 @@ class EmailAuthBackend:
             return User.objects.get(pk=user_id)
         except User.DoesNotExist:
             return None
+
+
+def create_profile(backend, user, *args, **kwargs):
+    """
+    Create user profile for social authentication
+    """
+    Profile.objects.get_or_create(user=user)
