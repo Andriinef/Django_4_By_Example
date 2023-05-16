@@ -46,6 +46,7 @@ exclude = [
     '2_chapter/',
     '3_chapter/',
     '4_chapter/',
+    '5_chapter/',
 ]                               # исключить из анализа типов определенные файлы или директории
 # strict_optional = true        # использовать ли опциональные типы
 # disallow_untyped_calls = true # запретить вызовы без указания типов
@@ -59,7 +60,7 @@ show_error_codes = true         # включает коды ошибок в со
 namespace_packages = true       # интерпретировать пакеты Python как пространства имен (namespace packages) при проверке типов
 
 [[tool.mypy.overrides]]         # игнорировать отсутствие импорта для модулей
-module = ["rest_framework_simplejwt.*", "allauth.*", "celery.*", "markdown"]
+module = ["rest_framework_simplejwt.*", "allauth.*", "celery.*", "markdown", "requests"]
 ignore_missing_imports = true
 
 [tool.django-stubs]             # указывает, какой модуль должен использоваться для настроек Django
