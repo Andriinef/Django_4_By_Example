@@ -61,7 +61,7 @@ show_error_codes = true         # включает коды ошибок в со
 namespace_packages = true       # интерпретировать пакеты Python как пространства имен (namespace packages) при проверке типов
 
 [[tool.mypy.overrides]]         # игнорировать отсутствие импорта для модулей
-module = ["rest_framework_simplejwt.*", "allauth.*", "celery.*", "markdown", "requests"]
+module = ["rest_framework_simplejwt.*", "allauth.*", "celery.*", "markdown", "requests", "redis"]
 ignore_missing_imports = true
 
 [tool.django-stubs]             # указывает, какой модуль должен использоваться для настроек Django
