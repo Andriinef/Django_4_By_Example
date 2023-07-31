@@ -33,3 +33,9 @@ day = "14"
 output = _("Today is %(month)s %(day)s") % {"month": month, "day": day}
 print(output)
 """
+
+def my_func(a, b):
+    return a + b
+
+result = my_func(5,2) + my_func(1,3)
+print(result)
