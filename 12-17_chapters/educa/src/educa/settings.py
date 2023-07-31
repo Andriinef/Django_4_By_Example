@@ -25,13 +25,13 @@ SECRET_KEY = "django-insecure-@rn%a9se8vl=tl9^czazxgr!=u3f$0#!atnb-ge^cb)j$to617
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
 
 INSTALLED_APPS = [
-    'courses.apps.CoursesConfig',
+    "courses.apps.CoursesConfig",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -120,8 +120,8 @@ STATIC_URL = "static/"
 
 
 # Media files
-MEDIA_URL = 'media/'
-MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_URL = "media/"
+MEDIA_ROOT = BASE_DIR / "media"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
