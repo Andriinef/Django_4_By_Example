@@ -1,0 +1,49 @@
+version: '3'
+
+services:
+
+  db:
+    image: postgres:14.5
+    container_name: postgres_db_educa
+    restart: always
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+
+  cache:
+    image: redis:7.0.4
+    container_name: redis_educa
+    restart: always
+    volumes:
+      - ./data/cache:/data
+
+  web:
+    build: .
+    container_name: educa_web
+    command: ["uwsgi", "--ini", "/config/uwsgi/uwsgi.ini"]
+    # command: ["python", "/code/src/manage.py", "runserver", "0.0.0.0:8000"]
+    restart: always
+    volumes:
+      - .:/code
+    ports:
+      - "8000:8000"
+    environment:
+      - DJANGO_SETTINGS_MODULE=educa.settings.prod
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    depends_on:
+      - db
+      - cache
+
+  nginx:
+    image: nginx:1.23.1
+    restart: always
+    volumes:
+      - ./config/nginx:/etc/nginx/templates
+      - .:/code
+    ports:
+      - "81:81"
